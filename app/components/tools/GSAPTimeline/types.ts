@@ -62,4 +62,7 @@ export interface EasingCurveProps {
   currentTime: number;
   isCollapsed?: boolean;
   onToggleCollapse?: () => void;
+  hoveredElement?: string | null;
+  onHoverElement?: (elementName: string | null) => void;
+  focusedElement?: string | null;
 }

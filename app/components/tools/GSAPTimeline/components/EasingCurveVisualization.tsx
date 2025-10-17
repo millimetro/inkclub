@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { gsap } from "gsap";
 import { EasingCurveProps } from "../types";
 import { generateEasingCurve, getHexColor } from "../utils";
@@ -9,9 +8,11 @@ export const EasingCurveVisualization = ({
   animatedElements, 
   currentTime, 
   isCollapsed = false, 
-  onToggleCollapse 
+  onToggleCollapse,
+  hoveredElement,
+  onHoverElement,
+  focusedElement
 }: EasingCurveProps) => {
-  const [hoveredElement, setHoveredElement] = useState<string | null>(null);
   
   return (
   <div className={`border-t border-gray-700/50 ${isCollapsed ? 'py-2 px-4' : 'p-4'}`}>
@@ -166,8 +167,9 @@ export const EasingCurveVisualization = ({
             currentTime >= element.startTime &&
             currentTime <= element.startTime + element.duration;
           
-          // Mostra solo la curva hovered o tutte se nessuna è hovered
-          const shouldShow = !hoveredElement || hoveredElement === element.name;
+          // Mostra solo la curva hovered/focused o tutte se nessuna è hovered/focused
+          const shouldShow = (!hoveredElement || hoveredElement === element.name) && 
+                            (!focusedElement || focusedElement === element.name);
 
           return (
             <g key={index} opacity={shouldShow ? 1 : 0.2}>
@@ -303,27 +305,6 @@ export const EasingCurveVisualization = ({
           linear
         </text>
       </svg>
-    </div>
-
-    {/* Legend */}
-    <div className="mt-2 flex justify-center space-x-4 flex-wrap gap-2">
-      {animatedElements
-        .filter((el) => el.easing)
-        .map((element, index) => (
-          <div 
-            key={index} 
-            className={`flex items-center space-x-1 whitespace-nowrap flex-shrink-0 cursor-pointer transition-opacity duration-200 ${
-              hoveredElement === element.name ? 'opacity-100' : 'opacity-60'
-            }`}
-            onMouseEnter={() => setHoveredElement(element.name)}
-            onMouseLeave={() => setHoveredElement(null)}
-          >
-            <div className={`w-1.5 h-1.5 rounded-full ${element.color}`}></div>
-            <span className="text-[10px] text-gray-400 font-mono">
-              {element.name}
-            </span>
-          </div>
-        ))}
     </div>
       </>
     )}

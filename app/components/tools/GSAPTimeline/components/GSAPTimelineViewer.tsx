@@ -6,7 +6,7 @@ import { GSAPTimelineViewerProps, TimelinePosition } from "../types";
 import { useTimeline } from "../hooks/useTimeline";
 import { TimelineControls } from "./TimelineControls";
 import { EasingCurveVisualization } from "./EasingCurveVisualization";
-import { generateEasingCurve, getHexColor } from "../utils";
+import { generateProgressCurve, getHexColor } from "../utils";
 
 export default function GSAPTimelineViewer({
   timelineId = "loader-timeline",
@@ -21,6 +21,9 @@ export default function GSAPTimelineViewer({
   const [isScrubbing, setIsScrubbing] = useState(false);
   const [isElementsTimelineCollapsed, setIsElementsTimelineCollapsed] = useState(true);
   const [isEasingCurvesCollapsed, setIsEasingCurvesCollapsed] = useState(true);
+  const [isTimelineOverviewCollapsed, setIsTimelineOverviewCollapsed] = useState(true);
+  const [hoveredElement, setHoveredElement] = useState<string | null>(null);
+  const [focusedElement, setFocusedElement] = useState<string | null>(null);
   
   const { timeline, isPlaying, progress, duration, analyzedData } = useTimeline(timelineId, autoAnalyze);
   
@@ -90,6 +93,16 @@ export default function GSAPTimelineViewer({
     }
   };
 
+  const handleElementFocus = (elementName: string) => {
+    if (focusedElement === elementName) {
+      // Se clicco sull'elemento già focalizzato, lo deseleziono
+      setFocusedElement(null);
+    } else {
+      // Altrimenti focalizzo questo elemento
+      setFocusedElement(elementName);
+    }
+  };
+
   if (!timeline) {
     return (
       <div
@@ -147,7 +160,7 @@ export default function GSAPTimelineViewer({
         }
       `}</style>
       <div
-        className={`${getPositionClasses(position)} bg-black/90 backdrop-blur-sm border border-gray-700/50 rounded-xl shadow-xl max-h-[95dvh] overflow-x-auto overflow-y-auto w-sm gsap-timeline-viewer ${className}`}
+        className={`${getPositionClasses(position)} bg-black/90 backdrop-blur-sm border border-gray-700/50 rounded-xl shadow-xl max-h-[95dvh] overflow-hidden w-sm gsap-timeline-viewer flex flex-col ${className}`}
       >
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-700/50">
@@ -194,6 +207,9 @@ export default function GSAPTimelineViewer({
           </div>
         </div>
       </div>
+
+      {/* Scrollable Content */}
+      <div className="overflow-y-auto overflow-x-auto flex-1 pb-2">
 
       {/* Timeline */}
       <div className="p-4">
@@ -270,31 +286,6 @@ export default function GSAPTimelineViewer({
           onScrubEnd={handleScrubEnd}
           onScrub={handleScrub}
         />
-
-        {/* Phase indicators */}
-        <div className="flex justify-between text-xs">
-          {phases.map((phase, index) => {
-            const isActive =
-              currentTime >= phase.start &&
-              currentTime <= phase.start + phase.duration;
-
-            return (
-              <div
-                key={index}
-                className={`flex items-center space-x-1 ${
-                  isActive ? "text-white" : "text-gray-400"
-                } transition-colors`}
-              >
-                <div
-                  className={`w-1.5 h-1.5 rounded-full ${phase.color
-                    .replace("bg-", "bg-")
-                    .replace("-500", "-400")}`}
-                ></div>
-                <span className="font-medium">{phase.name}</span>
-              </div>
-            );
-          })}
-        </div>
       </div>
 
       {/* Detailed Elements Timeline */}
@@ -338,6 +329,9 @@ export default function GSAPTimelineViewer({
               0,
               Math.min(1, (currentTime - element.startTime) / element.duration)
             );
+            const shouldShow = focusedElement === null || focusedElement === element.name;
+
+            if (!shouldShow) return null;
 
             return (
               <div key={index} className="group">
@@ -554,7 +548,7 @@ export default function GSAPTimelineViewer({
 
                           {/* Easing curve */}
                           <polyline
-                            points={generateEasingCurve(element.easing, 56, 40)}
+                            points={generateProgressCurve(element.easing, 56, 40)}
                             fill="none"
                             stroke={getHexColor(element.color)}
                             strokeWidth="2"
@@ -640,7 +634,253 @@ export default function GSAPTimelineViewer({
         currentTime={currentTime}
         isCollapsed={isEasingCurvesCollapsed}
         onToggleCollapse={() => setIsEasingCurvesCollapsed(!isEasingCurvesCollapsed)}
+        hoveredElement={hoveredElement}
+        onHoverElement={setHoveredElement}
+        focusedElement={focusedElement}
       />
+
+      {/* Timeline Overview */}
+      <div className={`border-t border-gray-700/50 ${isTimelineOverviewCollapsed ? 'py-2 px-4' : 'p-4'}`}>
+        <div className={`flex items-center justify-between ${isTimelineOverviewCollapsed ? 'mb-0' : 'mb-3'}`}>
+          <span className="px-1.5 py-0.5 bg-green-900/30 text-green-300 text-[10px] font-mono rounded border border-green-700/30">
+            Timeline Overview
+          </span>
+          <button
+            onClick={() => setIsTimelineOverviewCollapsed(!isTimelineOverviewCollapsed)}
+            className="flex items-center justify-center w-5 h-5 rounded bg-gray-800 hover:bg-gray-700 transition-colors"
+            title={isTimelineOverviewCollapsed ? "Expand Timeline Overview" : "Collapse Timeline Overview"}
+          >
+            <svg
+              className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${
+                isTimelineOverviewCollapsed ? "rotate-180" : ""
+              }`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {!isTimelineOverviewCollapsed && (
+          <div className="space-y-3">
+            {/* Timeline generale con tutte le curve */}
+            <div className="relative w-full h-24 bg-gray-900 border border-gray-700 rounded overflow-hidden">
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 400 100"
+                className="w-full h-full"
+              >
+                {/* Background grid */}
+                <defs>
+                  <pattern
+                    id="overviewGrid"
+                    width="20"
+                    height="20"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path
+                      d="M 20 0 L 0 0 0 20"
+                      fill="none"
+                      stroke="#374151"
+                      strokeWidth="0.5"
+                    />
+                  </pattern>
+                </defs>
+                <rect width="400" height="100" fill="url(#overviewGrid)" />
+
+                {/* Y Axis */}
+                <line
+                  x1="20"
+                  y1="20"
+                  x2="20"
+                  y2="80"
+                  stroke="#6b7280"
+                  strokeWidth="2"
+                />
+
+                {/* X Axis */}
+                <line
+                  x1="20"
+                  y1="80"
+                  x2="380"
+                  y2="80"
+                  stroke="#6b7280"
+                  strokeWidth="2"
+                />
+
+                {/* Grid lines */}
+                <line
+                  x1="20"
+                  y1="20"
+                  x2="380"
+                  y2="20"
+                  stroke="#6b7280"
+                  strokeWidth="1"
+                  strokeDasharray="2,2"
+                />
+                <line
+                  x1="20"
+                  y1="50"
+                  x2="380"
+                  y2="50"
+                  stroke="#6b7280"
+                  strokeWidth="1"
+                  strokeDasharray="2,2"
+                />
+                <line
+                  x1="200"
+                  y1="20"
+                  x2="200"
+                  y2="80"
+                  stroke="#6b7280"
+                  strokeWidth="1"
+                  strokeDasharray="2,2"
+                />
+
+                {/* Axis labels */}
+                <text
+                  x="200"
+                  y="95"
+                  textAnchor="middle"
+                  className="text-[8px] fill-gray-400 font-mono"
+                >
+                  Time (0 → {duration.toFixed(1)}s)
+                </text>
+                <text
+                  x="10"
+                  y="50"
+                  textAnchor="middle"
+                  className="text-[8px] fill-gray-400 font-mono"
+                  transform="rotate(-90 10 50)"
+                >
+                  Progress (0 → 1)
+                </text>
+
+                {/* Current time indicator */}
+                <line
+                  x1={20 + progress * 360}
+                  y1="20"
+                  x2={20 + progress * 360}
+                  y2="80"
+                  stroke="white"
+                  strokeWidth="2"
+                  opacity="0.8"
+                />
+
+                {/* Element curves */}
+                {animatedElements.map((element, index) => {
+                  const elementStartPercent = (element.startTime / duration) * 100;
+                  const elementWidthPercent = (element.duration / duration) * 100;
+                  const isActive =
+                    currentTime >= element.startTime &&
+                    currentTime <= element.startTime + element.duration;
+
+                  // Calcola la curva di progresso per questo elemento
+                  const elementWidth = (elementWidthPercent / 100) * 360;
+                  const curvePoints = generateProgressCurve(element.easing || "power2.out", elementWidth, 60);
+                  const color = getHexColor(element.color);
+                  const shouldShow = focusedElement === null || focusedElement === element.name;
+
+                  return (
+                    <g key={index} opacity={shouldShow ? "1" : "0.3"}>
+                      {/* Element timeline bar */}
+                      <rect
+                        x={20 + (elementStartPercent / 100) * 360}
+                        y={76}
+                        width={(elementWidthPercent / 100) * 360}
+                        height="8"
+                        fill={color}
+                        opacity={
+                          hoveredElement === null 
+                            ? (isActive ? "0.8" : "0.4")
+                            : (hoveredElement === element.name ? "0.8" : "0.2")
+                        }
+                        rx="2"
+                      />
+
+                      {/* Easing curve overlay */}
+                      {element.easing && (
+                        <polyline
+                          points={curvePoints}
+                          fill="none"
+                          stroke={color}
+                          strokeWidth="2.5"
+                          transform={`translate(${20 + (elementStartPercent / 100) * 360}, 20) scale(${elementWidth / 360}, 1)`}
+                          opacity={
+                            hoveredElement === null 
+                              ? (isActive ? "1" : "0.7")
+                              : (hoveredElement === element.name ? "1" : "0.2")
+                          }
+                        />
+                      )}
+
+                      {/* Element label */}
+                      <text
+                        x={20 + (elementStartPercent / 100) * 360 + 2}
+                        y="70"
+                        className="text-[8px] fill-gray-300 font-mono"
+                        opacity={
+                          hoveredElement === null 
+                            ? (isActive ? "1" : "0.6")
+                            : (hoveredElement === element.name ? "1" : "0.2")
+                        }
+                      >
+                        {element.name}
+                      </text>
+                    </g>
+                  );
+                })}
+              </svg>
+            </div>
+
+          </div>
+        )}
+      </div>
+
+      </div>
+
+      {/* Fixed Footer Legend */}
+      <div className="border-t border-gray-700/50 p-4 bg-gray-900/95 backdrop-blur-sm">
+        <div className="flex justify-center space-x-3 flex-wrap gap-1">
+          {animatedElements.map((element, index) => {
+            const isActive =
+              currentTime >= element.startTime &&
+              currentTime <= element.startTime + element.duration;
+            const isHovered = hoveredElement === element.name;
+            const isFocused = focusedElement === element.name;
+
+            return (
+              <div
+                key={index}
+                className={`flex items-center space-x-1 whitespace-nowrap flex-shrink-0 cursor-pointer transition-opacity duration-200 ${
+                  isActive || isHovered || isFocused ? "opacity-100" : "opacity-60"
+                } ${isFocused ? "ring-1 ring-blue-400 rounded px-1" : ""}`}
+                onMouseEnter={() => setHoveredElement(element.name)}
+                onMouseLeave={() => setHoveredElement(null)}
+                onClick={() => handleElementFocus(element.name)}
+              >
+                <div className={`w-2 h-2 rounded-full ${element.color}`}></div>
+                <span className="text-[9px] text-gray-400 font-mono">
+                  {element.name}
+                </span>
+                {element.easing && (
+                  <span className="text-[8px] text-gray-500 font-mono">
+                    ({element.easing})
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
     </>
   );

@@ -89,6 +89,50 @@ export const analyzeTimeline = (tl: gsap.core.Timeline): TimelineAnalysis => {
   return { phases, elements };
 };
 
+// Progress curve generation - shows animation progress from 0% to 100% with horizontal extension
+export const generateProgressCurve = (
+  easingType: string,
+  width: number = 100,
+  height: number = 40,
+  extensionLength: number = 20
+): string => {
+  const points: { x: number; y: number }[] = [];
+  const steps = 50;
+
+  // Generate the main curve
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    
+    // Use GSAP's easing function to get progress value
+    let progress = 0;
+    try {
+      const easingFunc = gsap.parseEase(easingType);
+      if (typeof easingFunc === 'function') {
+        progress = easingFunc(t);
+      }
+    } catch (error) {
+      // Fallback to linear if easing is not recognized
+      console.warn(`Unknown easing type: ${easingType}, falling back to linear`);
+      progress = t;
+    }
+
+    const x = (i / steps) * width;
+    // Progress goes from 0% (bottom) to 100% (top)
+    const y = height - progress * height;
+    points.push({ x, y });
+  }
+
+  // Add horizontal extension to maintain final value
+  const finalProgress = gsap.parseEase(easingType)(1);
+  const finalY = height - finalProgress * height;
+  
+  for (let i = 1; i <= extensionLength; i++) {
+    points.push({ x: width + i, y: finalY });
+  }
+
+  return points.map((p) => `${p.x},${p.y}`).join(" ");
+};
+
 // Easing curve generation using GSAP's easing functions
 export const generateEasingCurve = (
   easingType: string,
