@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import GridOverlay from "./components/tools/GridOverlay";
-import Loader from "./components/Loader";
+import Loader from "./components/Loader/Loader";
+import { GSAPTimelineViewer } from "./components/tools/GSAPTimeline";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,13 @@ export default function RootLayout({
         <GridOverlay />
         <Loader />
         {children}
+        
+        {/* GSAP Timeline Viewer - Solo in development */}
+        {process.env.NODE_ENV === "development" && (
+          <GSAPTimelineViewer 
+            timelineId="loader-timeline"
+          />
+        )}
       </body>
     </html>
   );
