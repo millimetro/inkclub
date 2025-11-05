@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Particolare Studio",
-  description: "Particolare Studio - Creative Design Studio",
+  title: "Ink Club",
+  description: "Ink Club",
 };
 
 export default function RootLayout({

@@ -1,4 +1,4 @@
-# Particolare Studio
+# Ink Club
 
 Creative Design Studio
 
