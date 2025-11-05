@@ -34,6 +34,7 @@ export default function RootLayout({
         <Loader />
         {children}
         
+        
         {/* GSAP Timeline Viewer - Solo in development */}
         {process.env.NODE_ENV === "development" && (
           <GSAPTimelineViewer 
