@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import GridOverlay from "./components/tools/GridOverlay";
 import Loader from "./components/Loader/Loader";
@@ -15,6 +16,38 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const benzin = localFont({
+  variable: "--font-benzin",
+  display: "swap",
+  src: [
+    {
+      path: "../public/fonts/Benzin/Benzin Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Benzin/Benzin Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Benzin/Benzin Semibold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Benzin/Benzin Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Benzin/Benzin Extra Bold.ttf",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+});
+
 export const metadata: Metadata = {
   title: "Ink Club",
   description: "Ink Club",
@@ -28,19 +61,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${benzin.variable} antialiased`}
       >
         <GridOverlay />
-        <Loader />
+        {/* <Loader /> */}
         {children}
         
         
         {/* GSAP Timeline Viewer - Solo in development */}
-        {process.env.NODE_ENV === "development" && (
+        {/* {process.env.NODE_ENV === "development" && (
           <GSAPTimelineViewer 
             timelineId="loader-timeline"
           />
-        )}
+        )} */}
       </body>
     </html>
   );

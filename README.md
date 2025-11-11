@@ -1,6 +1,6 @@
 # Ink Club
 
-Creative Design Studio
+InkClub Bergamo - il tuo circolo
 
 ## Getting Started
 
