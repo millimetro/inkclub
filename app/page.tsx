@@ -9,9 +9,9 @@ export default function Home() {
         <img
           src="/svg/inkclub.svg"
           alt="inkclub bergamo"
-          className="absolute top-32 left-4 w-[80%] h-auto"
+          className="absolute top-28 left-1/2 -translate-x-1/2 w-[98%] h-auto"
         />
-        <section className="px-4 grid items-end justify-start h-screen w-full pb-24 border-t-2 border-b-2 border-black">
+        <section className="px-4 grid items-end justify-start h-screen w-full pb-12 border-t-2 border-b-2 border-black">
           <div className="text-black font-bold font-gambarino tracking-tight text-6xl leading-[1] stroke-black mb-4">
             Dal 2016 promuoviamo la cultura dal basso
             <br />
@@ -22,7 +22,7 @@ export default function Home() {
             per giovani talenti e realtà emergenti.
           </div>
         </section>
-        <div className="absolute bottom-4 right-4 w-[20%] h-auto">
+        <div className="absolute bottom-16 right-4 w-[15%] h-auto">
           <ImageBox
             src="/foto/ink.jpeg"
             alt="Image"
