@@ -5,6 +5,7 @@ import "./globals.css";
 import GridOverlay from "./components/tools/GridOverlay";
 import Loader from "./components/Loader/Loader";
 import { GSAPTimelineViewer } from "./components/tools/GSAPTimeline";
+import Menu from "./components/Menu/Menu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,21 +21,21 @@ const benzin = localFont({
   variable: "--font-benzin",
   display: "swap",
   src: [
-    {
-      path: "../public/fonts/Benzin/Benzin Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Benzin/Benzin Medium.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Benzin/Benzin Semibold.ttf",
-      weight: "600",
-      style: "normal",
-    },
+    // {
+    //   path: "../public/fonts/Benzin/Benzin Regular.ttf",
+    //   weight: "400",
+    //   style: "normal",
+    // },
+    // {
+    //   path: "../public/fonts/Benzin/Benzin Medium.ttf",
+    //   weight: "500",
+    //   style: "normal",
+    // },
+    // {
+    //   path: "../public/fonts/Benzin/Benzin Semibold.ttf",
+    //   weight: "600",
+    //   style: "normal",
+    // },
     {
       path: "../public/fonts/Benzin/Benzin Bold.ttf",
       weight: "700",
@@ -64,6 +65,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${benzin.variable} antialiased`}
       >
         <GridOverlay />
+        {/* <Menu /> */}
         {/* <Loader /> */}
         {children}
         

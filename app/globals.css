@@ -1,10 +1,51 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Apfel Grotesk";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ApfelGrotesk/ApfelGrotezk-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Apfel Grotesk";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/ApfelGrotesk/ApfelGrotezk-Mittel.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Apfel Grotesk";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/ApfelGrotesk/ApfelGrotezk-Satt.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Apfel Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/ApfelGrotesk/ApfelGrotezk-Fett.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Apfel Grotesk";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/ApfelGrotesk/ApfelGrotezk-Brukt.woff2") format("woff2");
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --black: #161616;
   --cream: #e2e0d8;
+  --font-apfel: "Apfel Grotesk";
 }
 
 @theme inline {
@@ -15,6 +56,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-brand: var(--font-benzin);
+  --font-apfel: var(--font-apfel);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,5 +70,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+p {
+  font-family: var(--font-apfel), var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
