@@ -6,7 +6,7 @@ export default function Marquee({ text }: { text: string }) {
   const parts = text.split(emoticonPattern);
   
   return (
-    <div className="fixed bottom-0 left-0 right-0 overflow-hidden bg-yellow-400 text-black py-2 border-t-4 border-black z-10 group">
+    <div className="fixed bottom-0 left-0 right-0 overflow-hidden bg-yellow-400 text-black py-2 border-t-2 border-black z-10 group">
       <div className="flex animate-marquee whitespace-nowrap">
         <div className="flex items-center gap-8">
           {Array.from({ length: 20 }).map((_, i) => (

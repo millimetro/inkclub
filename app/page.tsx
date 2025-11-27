@@ -11,7 +11,7 @@ export default function Home() {
           alt="inkclub bergamo"
           className="absolute top-32 left-4 w-[80%] h-auto"
         />
-        <section className="px-4 grid items-end justify-start h-screen w-full pb-24">
+        <section className="px-4 grid items-end justify-start h-screen w-full pb-24 border-t-2 border-b-2 border-black">
           <div className="text-black font-bold font-gambarino tracking-tight text-6xl leading-[1] stroke-black mb-4">
             Dal 2016 promuoviamo la cultura dal basso
             <br />
@@ -32,7 +32,7 @@ export default function Home() {
       </main>
       
       {/* Club Section */}
-      <section id="club" className="px-4 grid items-end justify-start h-screen w-full pb-24 bg-black">
+      <section id="club" className="px-4 grid items-end justify-start h-screen w-full pb-24 bg-black border-t-2 border-b-2 border-black">
         <div>
           <h2 className="text-cream font-bold font-brand text-[15rem] uppercase mb-6 leading-none">Club</h2>
           <div className="text-cream font-bold font-gambarino tracking-tight text-6xl leading-[1] mb-4">
@@ -42,7 +42,7 @@ export default function Home() {
       </section>
 
       {/* Pub Section */}
-      <section id="pub" className="px-4 grid items-end justify-end h-screen w-full pb-24 bg-teal-700">
+      <section id="pub" className="px-4 grid items-end justify-end h-screen w-full pb-24 bg-teal-700 border-t-2 border-b-2 border-black">
         <div>
           <h2 className="text-cream font-bold font-brand text-[15rem] uppercase mb-6 leading-none">Pub</h2>
           <div className="text-cream font-bold font-gambarino tracking-tight text-6xl leading-[1] mb-4">
@@ -54,7 +54,7 @@ export default function Home() {
       </section>
 
       {/* Radio Section */}
-      <section id="radio" className="px-4 grid items-end justify-start h-screen w-full pb-24 bg-red-500">
+      <section id="radio" className="px-4 grid items-end justify-start h-screen w-full pb-24 bg-red-500 border-t-2 border-b-2 border-black">
         <div>
           <h2 className="text-black font-bold font-brand text-[15rem] uppercase mb-6 leading-none">Radio</h2>
           <div className="text-black font-bold font-gambarino tracking-tight text-6xl leading-[1] mb-4">
