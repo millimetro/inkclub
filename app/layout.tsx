@@ -66,7 +66,7 @@ export default function RootLayout({
       >
         <GridOverlay />
         {/* <Menu /> */}
-        {/* <Loader /> */}
+        <Loader />
         {children}
         
         

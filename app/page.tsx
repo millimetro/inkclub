@@ -7,8 +7,18 @@ export default function Home() {
         <div className="grid place-items-center">
           <img src="/logo/Logo.svg" alt="Ink Club Logo" className="h-[12vh]" />
         </div>
-        <WireframeSection title="Wireframe Section" />
-      </main>
-    </div>
-  );
+        <section className="px-4 grid place-items-end  h-screen w-full">
+          <div className="text-black font-bold font-gambarino tracking-tight text-6xl leading-[1] stroke-black">
+          Dal 2016 promuoviamo la cultura dal basso 
+          <br />
+          offrendo iniziative artistiche e musicali, 
+          <br />
+          creando spazi di espressione 
+          <br />
+          per giovani talenti e realtà emergenti.
+        </div>
+      </section>
+    </main>
+  </div>
+);
 }

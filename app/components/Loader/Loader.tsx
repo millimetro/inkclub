@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { createLoaderAnimation } from "./anim";
+import Image from "next/image";
 
 interface LoaderProps {
   onLoadingComplete?: () => void;
@@ -10,16 +11,24 @@ interface LoaderProps {
 
 
 export default function Loader({ onLoadingComplete }: LoaderProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [progress, setProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const claimRef = useRef<HTMLHeadingElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const progressFillRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   useGSAP(() => {
+    if (!isMounted) return;
     createLoaderAnimation(
-      textRef,
+      logoRef,
+      claimRef,
       progressBarRef,
       progressFillRef,
       containerRef,
@@ -27,45 +36,66 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
       setIsVisible,
       onLoadingComplete
     );
-  }, { scope: containerRef, dependencies: [onLoadingComplete] });
+  }, { scope: containerRef, dependencies: [onLoadingComplete, isMounted] });
 
-  if (!isVisible) return null;
+  if (!isMounted || !isVisible) return null;
 
   return (
     <div
       ref={containerRef}
       id="loaderContainer"
       data-loader="true"
-      className="fixed h-dvh inset-0 bg-background z-50 flex items-center justify-center"
+      className="fixed h-dvh inset-0 bg-black z-50 flex items-center justify-center"
     >
-      <div className="flex flex-col items-center space-y-8">
-        {/* Loading Text */}
-        <h3 
-          ref={textRef}
-          id="loaderText"
-          className="text-foreground text-sm md:text-lg font-medium"
+      <div className="relative w-full h-full">
+        {/* Logo - Centered */}
+        <div 
+          ref={logoRef}
+          id="loaderLogo"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         >
-          Loading Creative Excellence ...
-        </h3>
+          <Image 
+            src="/logo/Logo_w.svg" 
+            alt="Ink Club Logo" 
+            width={500}
+            height={500}
+            className="w-auto h-56 md:h-80 lg:h-96"
+            priority
+          />
+        </div>
 
-        {/* Progress Bar */}
+        {/* Claim Text - Far Left */}
+        <h2 
+          ref={claimRef}
+          id="loaderClaim"
+          className="absolute bottom-8 left-8 text-white font-bold font-brand text-lg md:text-2xl neobrutalist-text uppercase leading-none"
+        >
+          Il tuo circolo
+          <br />
+          a Bergamo
+        </h2>
+
+        {/* Progress Bar - Far Right */}
         <div 
           ref={progressBarRef}
-          id="progressBar"
-          className="md:w-64 w-48 h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden border border-gray-300 dark:border-gray-600"
+          className="absolute bottom-8 right-8 flex flex-col items-end gap-2"
         >
-          <div
-            ref={progressFillRef}
-            id="progressFill"
-            className="h-full bg-foreground rounded-full"
-            style={{ width: "0%" }}
+          <div 
+            id="progressBar"
+            className="md:w-64 w-48 h-8 bg-white border-4 border-cream p-0 overflow-hidden"
+            style={{ boxShadow: "8px 8px 0px 0px var(--cream)" }}
           >
+            <div
+              ref={progressFillRef}
+              id="progressFill"
+              className="h-full bg-black"
+              style={{ width: "0%" }}
+            >
+            </div>
           </div>
-        </div>
-        
-        {/* Progress Percentage */}
-        <div id="progressPercentage" className="text-foreground text-xs font-medium">
-          {Math.round(progress)}%
+          <div className="text-white font-bold font-brand text-sm md:text-base">
+            {Math.round(progress)}%
+          </div>
         </div>
       </div>
     </div>
