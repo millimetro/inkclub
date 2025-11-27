@@ -97,3 +97,19 @@ p {
   letter-spacing: -0.02em;
 }
 
+/* Marquee Animation */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 90s linear infinite;
+  display: flex;
+  width: fit-content;
+}
+

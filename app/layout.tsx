@@ -6,6 +6,7 @@ import GridOverlay from "./components/tools/GridOverlay";
 import Loader from "./components/Loader/Loader";
 import { GSAPTimelineViewer } from "./components/tools/GSAPTimeline";
 import Menu from "./components/Menu/Menu";
+import Navigation from "./components/Navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,6 +66,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${benzin.variable} antialiased`}
       >
         <GridOverlay />
+        <Navigation />
         {/* <Menu /> */}
         <Loader />
         {children}
