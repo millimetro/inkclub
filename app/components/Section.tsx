@@ -41,7 +41,7 @@ export default function Section({
       id={id}
       className={`relative px-4 md:px-6 h-[calc(100vh-6vh)] md:h-[calc(100vh-8vh)] w-full ${bgColor} border-t-2 border-b-2 border-black`}
     >
-      <div className="max-w-[85vw] mx-auto py-10 border-[white] flex flex-col md:flex-row gap-8 md:gap-12 h-full items-center">
+      <div className="max-w-[90vw] mx-auto border-[white] flex flex-col md:flex-row gap-8 md:gap-12 h-full items-center">
         <div className={`w-1/3 flex-[0.4] md:flex-none md:h-full flex items-center ${imageLeft ? "md:order-1" : "md:order-2"}`}>
           <ImageBox src={imageSrc} alt={imageAlt} className="w-full h-auto object-cover" borderColor={imageBorderClass} />
         </div>
@@ -53,7 +53,7 @@ export default function Section({
           ) : (
             <img src={title.src} alt={title.alt} className="w-full max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] h-auto mb-4 md:mb-6" />
           )}
-          <div className={`${textColor} font-bold font-gambarino tracking-tight text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-[1.1] md:leading-[1] mb-4 max-w-4xl`}>
+          <div className={`${textColor} font-bold font-gambarino tracking-tight text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-[1.1] md:leading-[1] mb-4`}>
             {description}
           </div>
           {button && (
