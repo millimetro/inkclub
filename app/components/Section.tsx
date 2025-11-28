@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 
 interface ButtonProps {
   href: string;
@@ -35,15 +38,98 @@ export default function Section({
   button,
   imageBorderClass,
 }: SectionProps) {
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+  const textContainerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    let rafId: number | null = null;
+    let lastScrollProgress = -1;
+
+    // Easing function for smooth animation
+    const easeOutCubic = (t: number): number => {
+      return 1 - Math.pow(1 - t, 3);
+    };
+
+    const updateAnimation = () => {
+      if (!imageContainerRef.current || !textContainerRef.current || !sectionRef.current) {
+        rafId = requestAnimationFrame(updateAnimation);
+        return;
+      }
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate scroll progress (0 when section enters, 1 when fully scrolled)
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const rawProgress = Math.max(0, Math.min(1, (windowHeight - sectionTop) / sectionHeight));
+      
+      // Apply easing for smoother motion
+      const scrollProgress = easeOutCubic(rawProgress);
+      
+      // Only update if progress changed significantly (performance optimization)
+      if (Math.abs(scrollProgress - lastScrollProgress) < 0.001) {
+        rafId = requestAnimationFrame(updateAnimation);
+        return;
+      }
+      lastScrollProgress = scrollProgress;
+      
+      // On mobile, keep simple layout (show image normally)
+      if (window.innerWidth < 768) {
+        if (imageContainerRef.current) {
+          imageContainerRef.current.style.width = '100%';
+        }
+        if (textContainerRef.current) {
+          textContainerRef.current.style.width = '100%';
+        }
+        rafId = requestAnimationFrame(updateAnimation);
+        return;
+      }
+      
+      // Text container: starts at 100% width, animates to 50%
+      const textWidth = 100 - (scrollProgress * 50);
+      textContainerRef.current.style.width = `${textWidth}%`;
+      
+      // Image container: starts at 0% width, animates to 50%
+      const imageWidth = scrollProgress * 50;
+      imageContainerRef.current.style.width = `${imageWidth}%`;
+      
+      rafId = requestAnimationFrame(updateAnimation);
+    };
+
+    // Start animation loop
+    rafId = requestAnimationFrame(updateAnimation);
+
+    return () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }, [imageLeft]);
+
   return (
     <section
+      ref={sectionRef}
       id={id}
-      className={`relative w-full h-[calc(100vh-6vh)] md:h-[calc(100vh-8vh)] ${bgColor} border-t-2 border-black flex flex-col md:flex-row`}
+      className={`sticky top-0 w-full h-[calc(100vh-6vh)] md:h-[calc(100vh-8vh)] ${bgColor} border-t-2 border-black flex flex-col md:flex-row`}
     >
-      <div className={`w-full md:w-1/2 h-full ${imageLeft ? "md:order-1 md:border-r-2 border-black" : "md:order-2"}`}>
-        <img src={imageSrc} alt={imageAlt} className="w-full h-full object-cover" />
+      <div 
+        ref={imageContainerRef}
+        className={`w-full md:w-0 h-full overflow-hidden ${imageLeft ? "md:order-1 md:border-r-2 border-black" : "md:order-2"}`}
+        style={{ willChange: 'width' }}
+      >
+        <img 
+          src={imageSrc} 
+          alt={imageAlt} 
+          className="w-full h-full object-cover" 
+        />
       </div>
-      <div className={`w-full md:w-1/2 flex flex-col justify-center px-4 md:px-8 lg:px-12 ${imageLeft ? "md:order-2" : "md:order-1 md:border-r-2 border-black"}`}>
+      <div 
+        ref={textContainerRef}
+        className={`w-full md:flex flex-col justify-center px-4 md:px-8 lg:px-12 ${imageLeft ? "md:order-2" : "md:order-1 md:border-r-2 border-black"}`}
+        style={{ width: '100%', willChange: 'width' }}
+      >
         {typeof title === "string" ? (
           <h2 className={`${textColor} font-bold font-brand text-[2rem] sm:text-[2.5rem] md:text-[4rem] lg:text-[5.5rem] xl:text-[6.5rem] uppercase mb-4 md:mb-6 leading-none tracking-tighter`}>
             {title}
