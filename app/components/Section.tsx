@@ -87,12 +87,12 @@ export default function Section({
         return;
       }
       
-      // Text container: starts at 100% width, animates to 50%
-      const textWidth = 100 - (scrollProgress * 50);
+      // Text container: starts at 100% width, animates to 2/3 (66.67%)
+      const textWidth = 100 - (scrollProgress * (100 / 3));
       textContainerRef.current.style.width = `${textWidth}%`;
       
-      // Image container: starts at 0% width, animates to 50%
-      const imageWidth = scrollProgress * 50;
+      // Image container: starts at 0% width, animates to 1/3 (33.33%)
+      const imageWidth = scrollProgress * (100 / 3);
       imageContainerRef.current.style.width = `${imageWidth}%`;
       
       rafId = requestAnimationFrame(updateAnimation);
