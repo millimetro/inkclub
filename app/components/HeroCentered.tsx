@@ -2,8 +2,8 @@ import ImageBox from "./ImageBox";
 
 export default function HeroCentered() {
   return (
-    <div className="mt-[72px] md:mt-[96px]">
-      <section className="px-4 md:px-6 flex flex-col items-center justify-center min-h-[calc(200vh-94px)] md:min-h-[200vh] w-full pb-8 md:pb-12 border-black gap-4 md:gap-6">
+    <div className="mt-[10vh] md:mt-[12vh]">
+      <section className="px-4 md:px-6 flex flex-col items-center justify-center min-h-[calc(200vh-12vh)] md:min-h-[200vh] w-full pb-8 md:pb-12 border-black gap-4 md:gap-6">
         <img
           src="/svg/ink_centered.svg"
           alt="inkclub bergamo"

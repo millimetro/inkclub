@@ -47,12 +47,12 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
       data-loader="true"
       className="fixed h-dvh inset-0 bg-black z-50 flex items-center justify-center"
     >
-      <div className="relative w-full h-full">
-        {/* Logo - Centered */}
+      <div className="flex flex-col items-center justify-center gap-8 md:gap-12 w-full h-full">
+        {/* Logo */}
         <div 
           ref={logoRef}
           id="loaderLogo"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="flex items-center justify-center"
         >
           <Image 
             src="/logo/Logo_w.svg" 
@@ -64,31 +64,20 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
           />
         </div>
 
-        {/* Claim Text - Far Left - Hidden on mobile */}
-        <h2 
-          ref={claimRef}
-          id="loaderClaim"
-          className="hidden md:block absolute bottom-8 left-8 text-white font-bold font-brand text-lg md:text-2xl neobrutalist-text uppercase leading-none"
-        >
-          Il tuo circolo
-          <br />
-          a Bergamo
-        </h2>
-
-        {/* Progress Bar - Centered on mobile, Far Right on desktop */}
+        {/* Progress Bar */}
         <div 
           ref={progressBarRef}
-          className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-8 flex flex-col items-center md:items-end gap-2"
+          className="flex flex-col items-center gap-2"
         >
           <div 
             id="progressBar"
-            className="md:w-64 w-32 h-6 md:h-8 bg-white border-2 md:border-4 border-cream p-0 overflow-hidden"
+            className="md:w-64 w-32 h-6 md:h-8 bg-white border-2 md:border-4 border-cream p-0 overflow-hidden rounded-full"
             style={{ boxShadow: "8px 8px 0px 0px var(--cream)" }}
           >
             <div
               ref={progressFillRef}
               id="progressFill"
-              className="h-full bg-black"
+              className="h-full bg-black rounded-full"
               style={{ width: "0%" }}
             >
             </div>
@@ -97,6 +86,15 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
             {Math.round(progress)}%
           </div>
         </div>
+
+        {/* Claim Text */}
+        <h2 
+          ref={claimRef}
+          id="loaderClaim"
+          className="hidden md:block text-cream font-bold font-gambarino text-lg md:text-xl lg:text-2xl xl:text-3xl neobrutalist-text leading-none text-center"
+        >
+          Dal 2016, il tuo circolo a Bergamo
+        </h2>
       </div>
     </div>
   );

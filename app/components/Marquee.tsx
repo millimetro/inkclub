@@ -6,7 +6,7 @@ export default function Marquee({ text }: { text: string }) {
   const parts = text.split(emoticonPattern);
   
   return (
-    <div className="fixed top-[72px] md:top-[96px] left-0 right-0 overflow-hidden bg-yellow-400 text-black py-0 md:py-0.5 border-b-2 border-black z-10 group hover:bg-black hover:text-white transition-all duration-300 group-hover:scale-110 origin-top cursor-pointer">
+    <div className="fixed top-[10vh] md:top-[12vh] left-0 right-0 overflow-hidden bg-yellow-400 text-black py-0 md:py-0.5 border-b-2 border-black z-10 group hover:bg-black hover:text-white transition-all duration-300 group-hover:scale-110 origin-top cursor-pointer">
       <div className="flex animate-marquee whitespace-nowrap">
         <div className="flex items-center gap-3 md:gap-6">
           {Array.from({ length: 10 }).map((_, i) => (

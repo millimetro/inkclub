@@ -24,6 +24,7 @@ export default function Home() {
         imageSrc="/imgs/club/club.png"
         imageAlt="Club"
         imageLeft={true}
+        imageBorderClass="border-cream"
       />
 
       {/* Pub Section */}

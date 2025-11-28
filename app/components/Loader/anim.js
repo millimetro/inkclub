@@ -69,7 +69,7 @@ export const createLoaderAnimation = (
     }
   }, "phase1+=0.6");
 
-  // Phase 5: Fade out and hide loader
+  // Phase 5: Fade out and hide loader (with delay after progress completes)
   tl.to(containerRef.current, {
     opacity: 0,
     duration: 0.5,
@@ -78,7 +78,7 @@ export const createLoaderAnimation = (
       setIsVisible(false);
       onLoadingComplete?.();
     }
-  }, "phase1+=2.1");
+  }, "phase1+=3.1"); // Added 1 second delay after progress bar completes
 
   // Expose timeline globally for development debugging
   if (process.env.NODE_ENV === "development") {

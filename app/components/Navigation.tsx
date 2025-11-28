@@ -54,7 +54,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 px-4 py-2 md:py-0 flex items-center justify-center lg:justify-between bg-cream border-b-2 border-black min-h-[64px] md:min-h-[88px]">
+      <nav className="fixed top-0 left-0 w-full z-50 px-4 py-2 md:py-0 flex items-center justify-center lg:justify-between bg-cream border-b-2 border-black min-h-[6vh] md:min-h-[8vh]">
         {/* Logo */}
         <div>
           <img

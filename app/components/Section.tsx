@@ -21,6 +21,7 @@ interface SectionProps {
   imageAlt: string;
   imageLeft?: boolean; // true = image left on desktop, false = image right on desktop
   button?: ButtonProps;
+  imageBorderClass?: string; // e.g., "border-white" to override default border-black
 }
 
 export default function Section({
@@ -33,46 +34,26 @@ export default function Section({
   imageAlt,
   imageLeft = true,
   button,
+  imageBorderClass,
 }: SectionProps) {
-  const imageOrder = imageLeft ? "order-1 md:order-1" : "order-1 md:order-2";
-  const contentOrder = imageLeft ? "order-2 md:order-2" : "order-2 md:order-1";
-
   return (
     <section
       id={id}
-      className={`relative px-4 md:px-6 h-[calc(100vh-64px)] md:h-[calc(100vh-88px)] w-full pt-0 pb-12 md:pb-24 ${bgColor} border-t-2 border-b-2 border-black`}
+      className={`relative px-4 md:px-6 h-[calc(100vh-6vh)] md:h-[calc(100vh-8vh)] w-full ${bgColor} border-t-2 border-b-2 border-black`}
     >
-      <div className="flex flex-col md:grid md:grid-cols-10 gap-6 md:gap-8 h-full items-center justify-center">
-        {/* Image - 70% on mobile, 30% on desktop */}
-        <div
-          className={`w-full md:col-span-3 ${imageOrder} flex-[0.7] md:flex-none md:h-full min-h-0 flex items-center`}
-        >
-          <ImageBox
-            src={imageSrc}
-            alt={imageAlt}
-            className="w-full h-full object-cover"
-          />
+      <div className="max-w-[95vw] mx-auto py-20 border-[white] flex flex-col md:grid md:grid-cols-10 gap-8 md:gap-12 h-full items-center">
+        <div className={`w-full md:col-span-4 flex-[0.4] md:flex-none md:h-full flex items-center ${imageLeft ? "md:order-1" : "md:order-2"}`}>
+          <ImageBox src={imageSrc} alt={imageAlt} className="w-full h-full object-cover" borderColor={imageBorderClass} />
         </div>
-        {/* Content - 30% on mobile, 70% on desktop */}
-        <div
-          className={`w-full md:col-span-7 ${contentOrder} flex-[0.3] md:flex-none flex flex-col justify-center md:h-full min-h-0`}
-        >
+        <div className={`w-full md:col-span-6 flex-[0.6] md:flex-none flex flex-col justify-center md:h-full ${imageLeft ? "md:order-2" : "md:order-1"}`}>
           {typeof title === "string" ? (
-            <h2
-              className={`${textColor} font-bold font-brand text-[3rem] sm:text-[4rem] md:text-[6rem] lg:text-[8rem] xl:text-[10rem] uppercase mb-4 md:mb-6 leading-none tracking-tighter`}
-            >
+            <h2 className={`${textColor} font-bold font-brand text-[2.5rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[7rem] xl:text-[9rem] uppercase mb-4 md:mb-6 leading-none tracking-tighter`}>
               {title}
             </h2>
           ) : (
-            <img
-              src={title.src}
-              alt={title.alt}
-              className="w-full max-w-[95%] sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] h-auto mb-4 md:mb-6"
-            />
+            <img src={title.src} alt={title.alt} className="w-full max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] h-auto mb-4 md:mb-6" />
           )}
-          <div
-            className={`${textColor} font-bold font-gambarino tracking-tight text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-[1.1] md:leading-[1] mb-4 max-w-4xl`}
-          >
+          <div className={`${textColor} font-bold font-gambarino tracking-tight text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-[1.1] md:leading-[1] mb-4 max-w-4xl`}>
             {description}
           </div>
           {button && (

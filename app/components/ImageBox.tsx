@@ -4,11 +4,12 @@ interface ImageBoxProps {
   src: string;
   alt?: string;
   className?: string;
+  borderColor?: string; // e.g., "border-white" to override default "border-black"
 }
 
-export default function ImageBox({ src, alt = "", className = "" }: ImageBoxProps) {
+export default function ImageBox({ src, alt = "", className = "", borderColor = "border-black" }: ImageBoxProps) {
   return (
-    <div className={`border-2 border-black rounded-3xl overflow-hidden ${className}`}>
+    <div className={`border-2 ${borderColor} rounded-3xl overflow-hidden ${className}`}>
       <img
         src={src}
         alt={alt}
