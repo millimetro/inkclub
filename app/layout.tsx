@@ -6,7 +6,7 @@ import GridOverlay from "./components/tools/GridOverlay";
 import Loader from "./components/Loader/Loader";
 import { GSAPTimelineViewer } from "./components/tools/GSAPTimeline";
 import Menu from "./components/Menu/Menu";
-import Navigation from "./components/Navigation";
+import NavigationSimple from "./components/NavigationSimple";
 import LenisProvider from "./components/tools/LenisProvider";
 
 const geistSans = Geist({
@@ -68,7 +68,7 @@ export default function RootLayout({
       >
         <LenisProvider>
           <GridOverlay />
-          <Navigation />
+          <NavigationSimple />
           {/* <Menu /> */}
           <Loader />
           {children}
