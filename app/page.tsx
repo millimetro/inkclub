@@ -12,6 +12,8 @@ export default function Home() {
       <HeroCentered />
       {/* <Hero /> */}
       
+      <Marquee text="DIVENTA SOC*! TESSERATI ORA (/◕ヮ◕)/" />
+      
       {/* Club Section */}
       <Section
         id="club"
@@ -103,8 +105,6 @@ export default function Home() {
           hoverTextClass: "hover:text-orange-600",
         }}
       />
-
-      <Marquee text="DIVENTA SOC*! TESSERATI ORA (/◕ヮ◕)/" />
 
       {/* Values Section */}
       <ValuesSection text="Ink Club crede fermamente nei valori di antifascismo, antirazzismo, antisessismo, ed è schierato dalla parte della pace, dei diritti, dell'uguaglianza, della solidarietà, del libero accesso alla cultura, della giustizia sociale, dei valori democratici." />
