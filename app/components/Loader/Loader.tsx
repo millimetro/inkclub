@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { createLoaderAnimation } from "./anim";
 import Image from "next/image";
+import { useLoader } from "../../contexts/LoaderContext";
 
 interface LoaderProps {
   onLoadingComplete?: () => void;
@@ -19,10 +20,16 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
   const claimRef = useRef<HTMLHeadingElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const progressFillRef = useRef<HTMLDivElement>(null);
+  const { setLoaderComplete } = useLoader();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const handleLoadingComplete = () => {
+    setLoaderComplete(true);
+    onLoadingComplete?.();
+  };
 
   useGSAP(() => {
     if (!isMounted) return;
@@ -34,9 +41,9 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
       containerRef,
       setProgress,
       setIsVisible,
-      onLoadingComplete
+      handleLoadingComplete
     );
-  }, { scope: containerRef, dependencies: [onLoadingComplete, isMounted] });
+  }, { scope: containerRef, dependencies: [isMounted] });
 
   if (!isMounted || !isVisible) return null;
 

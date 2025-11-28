@@ -7,8 +7,15 @@ export default function HeroCentered() {
         <img
           src="/svg/ink_centered.svg"
           alt="inkclub bergamo"
-          className="w-[95%] md:w-[98%] h-auto"
+          className="w-[95%] md:w-[98%] h-auto mt-8 md:mt-12"
         />
+        <div className="w-full h-auto">
+          <ImageBox
+            src="/foto/ink.jpeg"
+            alt="Image"
+            className="w-full h-full"
+          />
+        </div>
         <div className="text-black font-bold font-gambarino tracking-tight text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-[1.1] md:leading-[1] stroke-black max-w-4xl text-center">
           Dal 2016 promuoviamo la cultura dal basso
           <br />
@@ -17,13 +24,6 @@ export default function HeroCentered() {
           creando spazi di espressione
           <br />
           per giovani talenti e realtà emergenti.
-        </div>
-        <div className="w-[60%] sm:w-[55%] md:w-[50%] h-auto">
-          <ImageBox
-            src="/foto/ink.jpeg"
-            alt="Image"
-            className="w-full h-full"
-          />
         </div>
       </section>
     </div>

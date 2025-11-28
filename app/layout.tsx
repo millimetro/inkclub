@@ -8,6 +8,7 @@ import { GSAPTimelineViewer } from "./components/tools/GSAPTimeline";
 import Menu from "./components/Menu/Menu";
 import NavigationSimple from "./components/NavigationSimple";
 import LenisProvider from "./components/tools/LenisProvider";
+import { LoaderProvider } from "./contexts/LoaderContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,21 +67,23 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${benzin.variable} antialiased`}
       >
-        <LenisProvider>
-          <GridOverlay />
-          <NavigationSimple />
-          {/* <Menu /> */}
-          <Loader />
-          {children}
-        
-        
-        {/* GSAP Timeline Viewer - Solo in development */}
-        {/* {process.env.NODE_ENV === "development" && (
-          <GSAPTimelineViewer 
-            timelineId="loader-timeline"
-          />
-        )} */}
-        </LenisProvider>
+        <LoaderProvider>
+          <LenisProvider>
+            <GridOverlay />
+            <NavigationSimple />
+            {/* <Menu /> */}
+            <Loader />
+            {children}
+          
+          
+          {/* GSAP Timeline Viewer - Solo in development */}
+          {/* {process.env.NODE_ENV === "development" && (
+            <GSAPTimelineViewer 
+              timelineId="loader-timeline"
+            />
+          )} */}
+          </LenisProvider>
+        </LoaderProvider>
       </body>
     </html>
   );
