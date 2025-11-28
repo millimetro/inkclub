@@ -8,7 +8,7 @@ interface ImageBoxProps {
 
 export default function ImageBox({ src, alt = "", className = "" }: ImageBoxProps) {
   return (
-    <div className={`border-4 border-black rounded-3xl overflow-hidden ${className}`}>
+    <div className={`border-2 border-black rounded-3xl overflow-hidden ${className}`}>
       <img
         src={src}
         alt={alt}

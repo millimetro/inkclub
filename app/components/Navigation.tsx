@@ -4,7 +4,7 @@ export default function Navigation() {
   const navItems = ["CLUB", "PUB", "RADIO", "CLAMORE", "ACADEMY"];
 
   const getItemClasses = (item: string) => {
-    const baseClasses = "font-brand font-extrabold uppercase text-lg px-2 py-1 border-2 border-black shadow-[8px_8px_0px_0px_rgb(22,22,22)] hover:shadow-[4px_4px_0px_0px_rgb(22,22,22)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all text-black";
+    const baseClasses = "font-brand font-extrabold uppercase text-base px-2 py-1 border-2 border-black shadow-[8px_8px_0px_0px_rgb(22,22,22)] hover:shadow-[4px_4px_0px_0px_rgb(22,22,22)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all text-black";
     
     switch (item) {
       case "CLUB":
@@ -23,7 +23,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-4 py-2 flex items-center justify-between bg-cream border-b-2 border-black">
+    <nav className="fixed top-0 left-0 w-full z-50 px-4 flex items-center justify-between bg-cream border-b-2 border-black">
       {/* Logo */}
       <div>
         <img
@@ -34,7 +34,7 @@ export default function Navigation() {
       </div>
 
       {/* Nav items */}
-      <div className="flex items-center gap-4 mr-8">
+      <div className="flex items-center gap-4 mr-2">
         {navItems.map((item) => (
           <a
             key={item}
@@ -44,10 +44,11 @@ export default function Navigation() {
             {item}
           </a>
         ))}
-        <button className="font-brand font-extrabold uppercase text-black text-lg px-4 py-1 border-2 border-black shadow-[8px_8px_0px_0px_rgb(22,22,22)] hover:shadow-[4px_4px_0px_0px_rgb(22,22,22)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-green-500">
+        <div className="self-stretch w-0.5 bg-black mx-2"></div>
+        <button className="font-brand font-extrabold uppercase text-black text-base px-4 py-1 border-2 border-black shadow-[8px_8px_0px_0px_rgb(22,22,22)] hover:shadow-[4px_4px_0px_0px_rgb(22,22,22)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-green-500">
           SOSTIENICI
         </button>
-        <button className="font-brand font-extrabold uppercase text-cream text-lg px-4 py-1 border-2 border-black shadow-[8px_8px_0px_0px_rgb(22,22,22)] hover:shadow-[4px_4px_0px_0px_rgb(22,22,22)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-purple-500">
+        <button className="font-brand font-extrabold uppercase text-cream text-base px-4 py-1 border-2 border-black shadow-[8px_8px_0px_0px_rgb(22,22,22)] hover:shadow-[4px_4px_0px_0px_rgb(22,22,22)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-purple-500">
           CONTATTACI
         </button>
       </div>

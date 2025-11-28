@@ -12,7 +12,7 @@ export default function Home() {
           className="absolute top-28 left-1/2 -translate-x-1/2 w-[98%] h-auto"
         />
         <section className="px-4 grid items-end justify-start h-screen w-full pb-12 border-t-2 border-b-2 border-black">
-          <div className="text-black font-bold font-gambarino tracking-tight text-6xl leading-[1] stroke-black mb-4">
+          <div className="text-black font-bold font-gambarino tracking-tight text-5xl leading-[1] stroke-black mb-4">
             Dal 2016 promuoviamo la cultura dal basso
             <br />
             offrendo iniziative artistiche e musicali,
@@ -34,8 +34,8 @@ export default function Home() {
       {/* Club Section */}
       <section id="club" className="px-4 grid items-end justify-start h-screen w-full pb-24 bg-black border-t-2 border-b-2 border-black">
         <div>
-          <h2 className="text-cream font-bold font-brand text-[15rem] uppercase mb-6 leading-none">Club</h2>
-          <div className="text-cream font-bold font-gambarino tracking-tight text-6xl leading-[1] mb-4">
+          <h2 className="text-cream font-bold font-brand text-[15rem] uppercase mb-6 leading-none tracking-tighter">Club</h2>
+          <div className="text-cream font-bold font-gambarino tracking-tight text-5xl leading-[1] mb-4">
             Una programmazione fittissima di concerti live e dj set, con particolare attenzione alla musica emergente e alla scena underground nazionale e internazionale.
           </div>
         </div>
@@ -44,8 +44,8 @@ export default function Home() {
       {/* Pub Section */}
       <section id="pub" className="px-4 grid items-end justify-end h-screen w-full pb-24 bg-teal-700 border-t-2 border-b-2 border-black">
         <div>
-          <h2 className="text-cream font-bold font-brand text-[15rem] uppercase mb-6 leading-none">Pub</h2>
-          <div className="text-cream font-bold font-gambarino tracking-tight text-6xl leading-[1] mb-4">
+          <h2 className="text-cream font-bold font-brand text-[15rem] uppercase mb-6 leading-none tracking-tighter">Pub</h2>
+          <div className="text-cream font-bold font-gambarino tracking-tight text-5xl leading-[1] mb-4">
             Il neonato spazio per la convivialità.
             <br />
             Pensato anche come spazio di decompressione durante le serate al Club.
@@ -56,8 +56,8 @@ export default function Home() {
       {/* Radio Section */}
       <section id="radio" className="px-4 grid items-end justify-start h-screen w-full pb-24 bg-red-500 border-t-2 border-b-2 border-black">
         <div>
-          <h2 className="text-black font-bold font-brand text-[15rem] uppercase mb-6 leading-none">Radio</h2>
-          <div className="text-black font-bold font-gambarino tracking-tight text-6xl leading-[1] mb-4">
+          <h2 className="text-black font-bold font-brand text-[15rem] uppercase mb-6 leading-none tracking-tighter">Radio</h2>
+          <div className="text-black font-bold font-gambarino tracking-tight text-5xl leading-[1] mb-4">
             La web radio del club, con nuove dirette e podcast ogni settimana.
           </div>
         </div>

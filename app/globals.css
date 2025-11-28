@@ -113,3 +113,7 @@ p {
   width: fit-content;
 }
 
+.group:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
