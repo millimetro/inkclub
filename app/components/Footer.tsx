@@ -82,7 +82,7 @@ export default function Footer({
   collaborationsAlt,
 }: FooterProps) {
   return (
-    <footer className="relative px-4 md:px-6 py-12 md:py-16 bg-black border-t-2 border-black z-20">
+    <footer id="footer" className="relative px-4 md:px-6 py-12 md:py-16 bg-black border-t-2 border-black z-20">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center gap-6 md:gap-8 mb-8 md:mb-12">
           <img
