@@ -1,4 +1,3 @@
-import ImageBox from "./ImageBox";
 
 interface ButtonProps {
   href: string;
@@ -39,34 +38,32 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`relative px-4 md:px-6 h-[calc(100vh-6vh)] md:h-[calc(100vh-8vh)] w-full ${bgColor} border-t-2 border-b-2 border-black`}
+      className={`relative w-full h-[calc(100vh-6vh)] md:h-[calc(100vh-8vh)] ${bgColor} border-t-2 border-black flex flex-col md:flex-row`}
     >
-      <div className="max-w-[90vw] mx-auto border-[white] flex flex-col md:flex-row gap-8 md:gap-12 h-full items-center">
-        <div className={`w-1/3 flex-[0.4] md:flex-none md:h-full flex items-center ${imageLeft ? "md:order-1" : "md:order-2"}`}>
-          <ImageBox src={imageSrc} alt={imageAlt} className="w-full h-auto object-cover" borderColor={imageBorderClass} />
+      <div className={`w-full md:w-1/2 h-full ${imageLeft ? "md:order-1 md:border-r-2 border-black" : "md:order-2"}`}>
+        <img src={imageSrc} alt={imageAlt} className="w-full h-full object-cover" />
+      </div>
+      <div className={`w-full md:w-1/2 flex flex-col justify-center px-4 md:px-8 lg:px-12 ${imageLeft ? "md:order-2" : "md:order-1 md:border-r-2 border-black"}`}>
+        {typeof title === "string" ? (
+          <h2 className={`${textColor} font-bold font-brand text-[2rem] sm:text-[2.5rem] md:text-[4rem] lg:text-[5.5rem] xl:text-[6.5rem] uppercase mb-4 md:mb-6 leading-none tracking-tighter`}>
+            {title}
+          </h2>
+        ) : (
+          <img src={title.src} alt={title.alt} className="w-full max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] h-auto mb-4 md:mb-6" />
+        )}
+        <div className={`${textColor} font-bold font-gambarino tracking-tight text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-[1.1] md:leading-[1] mb-4`}>
+          {description}
         </div>
-        <div className={`w-2/3  flex-[0.6] md:flex-none flex flex-col justify-center md:h-full ${imageLeft ? "md:order-2" : "md:order-1"}`}>
-          {typeof title === "string" ? (
-            <h2 className={`${textColor} font-bold font-brand text-[2.5rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[7rem] xl:text-[8rem] uppercase mb-4 md:mb-6 leading-none tracking-tighter`}>
-              {title}
-            </h2>
-          ) : (
-            <img src={title.src} alt={title.alt} className="w-full max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[80%] h-auto mb-4 md:mb-6" />
-          )}
-          <div className={`${textColor} font-bold font-gambarino tracking-tight text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-[1.1] md:leading-[1] mb-4`}>
-            {description}
-          </div>
-          {button && (
-            <a
-              href={button.href}
-              target={button.target}
-              rel={button.rel}
-              className={`inline-block mt-6 md:mt-8 px-6 md:px-8 py-3 md:py-4 border-2 ${button.borderColor} rounded-full ${button.textColor} font-bold font-gambarino text-lg sm:text-xl md:text-2xl ${button.hoverBgClass} ${button.hoverTextClass} transition-colors duration-300 max-w-max`}
-            >
-              {button.text}
-            </a>
-          )}
-        </div>
+        {button && (
+          <a
+            href={button.href}
+            target={button.target}
+            rel={button.rel}
+            className={`inline-block mt-6 md:mt-8 px-6 md:px-8 py-3 md:py-4 border-2 ${button.borderColor} rounded-full ${button.textColor} font-bold font-gambarino text-lg sm:text-xl md:text-2xl ${button.hoverBgClass} ${button.hoverTextClass} transition-colors duration-300 max-w-max`}
+          >
+            {button.text}
+          </a>
+        )}
       </div>
     </section>
   );

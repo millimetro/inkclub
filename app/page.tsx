@@ -11,16 +11,23 @@ export default function Home() {
     <main className="min-h-screen bg-cream">
       <HeroCentered />
       {/* <Hero /> */}
-      
+
       <Marquee text="DIVENTA SOC*! TESSERATI ORA (/◕ヮ◕)/" />
-      
+
       {/* Club Section */}
       <Section
         id="club"
         bgColor="bg-black"
         textColor="text-cream"
         title="Club"
-        description="Una programmazione fittissima di concerti live e dj set, con particolare attenzione alla musica emergente e alla scena underground nazionale e internazionale."
+        description={
+          <>
+            Una programmazione fittissima di concerti live e dj set, 
+            <br />
+            con particolare attenzione alla musica emergente
+            <br />e alla scena underground nazionale e internazionale.
+          </>
+        }
         imageSrc="/imgs/club/club.png"
         imageAlt="Club"
         imageLeft={true}
@@ -37,7 +44,11 @@ export default function Home() {
           <>
             Il neonato spazio per la convivialità.
             <br />
-            Pensato anche come spazio di decompressione durante le serate al Club.
+            Pensato anche come spazio di decompressione 
+            
+            <br />
+            durante le serate al
+            Club.
           </>
         }
         imageSrc="/imgs/pub/pub.png"
@@ -51,7 +62,13 @@ export default function Home() {
         bgColor="bg-red-500"
         textColor="text-black"
         title="Radio"
-        description="La web radio del club, con nuove dirette e podcast ogni settimana."
+        description={
+          <>
+            La web radio del club, con nuove dirette 
+            <br />
+            e podcast ogni settimana.
+          </>
+        }
         imageSrc="/imgs/radio/radio.png"
         imageAlt="Radio"
         imageLeft={true}
@@ -73,7 +90,13 @@ export default function Home() {
         bgColor="bg-sky-600"
         textColor="text-pink-300"
         title="Academy"
-        description="Un percorso formativo dedicato alla musica e alle arti performative."
+        description={
+          <>
+            Un percorso formativo dedicato alla musica 
+            <br />
+            e alle arti performative.
+          </>
+        }
         imageSrc="/imgs/academy/academy.png"
         imageAlt="Academy"
         imageLeft={false}
@@ -93,7 +116,13 @@ export default function Home() {
         bgColor="bg-orange-600"
         textColor="text-cream"
         title={{ type: "svg", src: "/svg/clamore.svg", alt: "Clamore" }}
-        description="Un festival che celebra la cultura underground e la scena emergente."
+        description={
+          <>
+            Un festival che celebra la cultura underground 
+            <br />
+            e la scena emergente.
+          </>
+        }
         imageSrc="/imgs/clamore/live.png"
         imageAlt="Clamore"
         imageLeft={true}
@@ -115,8 +144,14 @@ export default function Home() {
         email="info@inkclub.bergamo.it"
         address="Via Carducci 4/b – Bergamo"
         socialLinks={[
-          { name: "Facebook", href: "https://www.facebook.com/InkClubBergamo/" },
-          { name: "Instagram", href: "https://www.instagram.com/inkclub_bergamo/" },
+          {
+            name: "Facebook",
+            href: "https://www.facebook.com/InkClubBergamo/",
+          },
+          {
+            name: "Instagram",
+            href: "https://www.instagram.com/inkclub_bergamo/",
+          },
           { name: "Youtube", href: "https://www.youtube.com/inkclubbergamo/" },
           { name: "Flickr", href: "#" },
         ]}
