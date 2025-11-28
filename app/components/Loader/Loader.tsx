@@ -47,7 +47,7 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
       data-loader="true"
       className="fixed h-dvh inset-0 bg-black z-50 flex items-center justify-center"
     >
-      <div className="flex flex-col items-center justify-center gap-8 md:gap-12 w-full h-full">
+      <div className="flex flex-col items-center justify-center gap-6 md:gap-8 w-full h-full">
         {/* Logo */}
         <div 
           ref={logoRef}
@@ -59,7 +59,7 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
             alt="Ink Club Logo" 
             width={500}
             height={500}
-            className="w-auto h-56 md:h-80 lg:h-96"
+            className="w-auto h-48 md:h-64 lg:h-80"
             priority
           />
         </div>
@@ -71,8 +71,8 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
         >
           <div 
             id="progressBar"
-            className="md:w-64 w-32 h-6 md:h-8 bg-white border-2 md:border-4 border-cream p-0 overflow-hidden rounded-full"
-            style={{ boxShadow: "8px 8px 0px 0px var(--cream)" }}
+            className="md:w-56 w-28 h-5 md:h-7 bg-white border-2 md:border-3 border-cream p-0 overflow-hidden rounded-full"
+            style={{ boxShadow: "7px 7px 0px 0px var(--cream)" }}
           >
             <div
               ref={progressFillRef}
@@ -93,7 +93,11 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
           id="loaderClaim"
           className="hidden md:block text-cream font-bold font-gambarino text-lg md:text-xl lg:text-2xl xl:text-3xl neobrutalist-text leading-none text-center"
         >
-          Dal 2016, il tuo circolo a Bergamo
+          {"Dal 2016, il tuo circolo a Bergamo".split("").map((char, index) => (
+            <span key={index} className="char inline-block">
+              {char === " " ? "\u00A0" : char}
+            </span>
+          ))}
         </h2>
       </div>
     </div>
