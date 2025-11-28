@@ -16,7 +16,7 @@ export default function HeroCentered() {
             className="w-full h-full"
           />
         </div>
-        <div className="text-black font-bold font-gambarino tracking-tight text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-[1.1] md:leading-[1] stroke-black max-w-4xl text-center">
+        <div className="text-black font-bold font-gambarino tracking-tight text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-[1.1] md:leading-[1] stroke-black max-w-6xl text-center min-h-screen grid place-items-center">
           Dal 2016 promuoviamo la cultura dal basso
           <br />
           offrendo iniziative artistiche e musicali,
