@@ -95,11 +95,11 @@ export const createLoaderAnimation = (
     }, "phase1+=2.9"); // Start after progress bar fade out (2.4 + 0.4 + 0.1 gap)
   }
 
-  // Phase 5: Fade out and hide loader (after claim animation completes with delay)
+  // Phase 5: Slide up and hide loader (after claim animation completes with delay)
   tl.to(containerRef.current, {
-    opacity: 0,
-    duration: 0.5,
-    ease: "power2.inOut",
+    yPercent: -100,
+    duration: 0.8,
+    ease: "power3.inOut",
     onComplete: () => {
       setIsVisible(false);
       onLoadingComplete?.();
