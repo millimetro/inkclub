@@ -7,6 +7,7 @@ import Loader from "./components/Loader/Loader";
 import { GSAPTimelineViewer } from "./components/tools/GSAPTimeline";
 import Menu from "./components/Menu/Menu";
 import Navigation from "./components/Navigation";
+import LenisProvider from "./components/tools/LenisProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,11 +66,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${benzin.variable} antialiased`}
       >
-        <GridOverlay />
-        <Navigation />
-        {/* <Menu /> */}
-        <Loader />
-        {children}
+        <LenisProvider>
+          <GridOverlay />
+          <Navigation />
+          {/* <Menu /> */}
+          <Loader />
+          {children}
         
         
         {/* GSAP Timeline Viewer - Solo in development */}
@@ -78,6 +80,7 @@ export default function RootLayout({
             timelineId="loader-timeline"
           />
         )} */}
+        </LenisProvider>
       </body>
     </html>
   );

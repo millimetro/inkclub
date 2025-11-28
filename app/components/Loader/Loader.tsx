@@ -64,25 +64,25 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
           />
         </div>
 
-        {/* Claim Text - Far Left */}
+        {/* Claim Text - Far Left - Hidden on mobile */}
         <h2 
           ref={claimRef}
           id="loaderClaim"
-          className="absolute bottom-8 left-8 text-white font-bold font-brand text-lg md:text-2xl neobrutalist-text uppercase leading-none"
+          className="hidden md:block absolute bottom-8 left-8 text-white font-bold font-brand text-lg md:text-2xl neobrutalist-text uppercase leading-none"
         >
           Il tuo circolo
           <br />
           a Bergamo
         </h2>
 
-        {/* Progress Bar - Far Right */}
+        {/* Progress Bar - Centered on mobile, Far Right on desktop */}
         <div 
           ref={progressBarRef}
-          className="absolute bottom-8 right-8 flex flex-col items-end gap-2"
+          className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-8 flex flex-col items-center md:items-end gap-2"
         >
           <div 
             id="progressBar"
-            className="md:w-64 w-48 h-8 bg-white border-4 border-cream p-0 overflow-hidden"
+            className="md:w-64 w-32 h-6 md:h-8 bg-white border-2 md:border-4 border-cream p-0 overflow-hidden"
             style={{ boxShadow: "8px 8px 0px 0px var(--cream)" }}
           >
             <div
@@ -93,7 +93,7 @@ export default function Loader({ onLoadingComplete }: LoaderProps) {
             >
             </div>
           </div>
-          <div className="text-white font-bold font-brand text-sm md:text-base">
+          <div className="text-white font-bold font-brand text-xs md:text-base">
             {Math.round(progress)}%
           </div>
         </div>

@@ -45,7 +45,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/Gambarino/Gambarino-Regular.woff2") format("woff2");
+  src: url("/fonts/Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.woff2") format("woff2");
 }
 :root {
   --background: #ffffff;
