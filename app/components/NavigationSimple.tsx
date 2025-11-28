@@ -4,11 +4,11 @@ import React from "react";
 
 export default function NavigationSimple() {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-4 py-2 md:py-0 flex items-center justify-between bg-cream border-b-2 border-black min-h-[64px] md:min-h-[88px]">
+    <nav className="fixed top-0 left-0 w-full z-50 px-6 md:px-8 py-2 md:py-0 flex items-center justify-between bg-cream border-b-2 border-black min-h-[80px] md:min-h-[104px]">
       {/* Sostienici - Left */}
-      <button className="inline-flex items-center gap-2 px-4 md:px-6 py-1 md:py-2 border-2 border-black rounded-full bg-black text-green-500 font-bold font-brand uppercase text-sm sm:text-base md:text-lg shadow-[8px_8px_0px_0px_rgb(34,197,94)] hover:shadow-[4px_4px_0px_0px_rgb(34,197,94)] hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-green-500 hover:text-black transition-all duration-300">
+      <button className="inline-flex items-center gap-2 px-3 md:px-4 py-0.5 md:py-1.5 border-2 border-black rounded-full bg-black text-green-500 font-bold font-brand uppercase text-sm sm:text-sm md:text-base shadow-[8px_8px_0px_0px_rgb(34,197,94)] hover:shadow-[4px_4px_0px_0px_rgb(34,197,94)] hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-green-500 hover:text-black transition-all duration-300">
         <svg
-          className="w-5 h-5 md:w-6 md:h-6"
+          className="w-4 h-4 md:w-5 md:h-5"
           fill="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -23,14 +23,14 @@ export default function NavigationSimple() {
         <img
           src="/logo/Logo.svg"
           alt="Ink Club Logo"
-          className="h-20 md:h-24"
+          className="h-24 md:h-28"
         />
       </div>
 
       {/* Contattaci - Right */}
-      <button className="inline-flex items-center gap-2 px-4 md:px-6 py-1 md:py-2 border-2 border-black rounded-full bg-black text-purple-500 font-bold font-brand uppercase text-sm sm:text-base md:text-lg shadow-[8px_8px_0px_0px_rgb(168,85,247)] hover:shadow-[4px_4px_0px_0px_rgb(168,85,247)] hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-purple-500 hover:text-black transition-all duration-300">
+      <button className="inline-flex items-center gap-2 px-3 md:px-4 py-0.5 md:py-1.5 border-2 border-black rounded-full bg-black text-purple-500 font-bold font-brand uppercase text-sm sm:text-sm md:text-base shadow-[8px_8px_0px_0px_rgb(168,85,247)] hover:shadow-[4px_4px_0px_0px_rgb(168,85,247)] hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-purple-500 hover:text-black transition-all duration-300">
         <svg
-          className="w-5 h-5 md:w-6 md:h-6"
+          className="w-4 h-4 md:w-5 md:h-5"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
