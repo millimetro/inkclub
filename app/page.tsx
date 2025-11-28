@@ -66,7 +66,7 @@ export default function Home() {
       <Marquee text="DIVENTA SOCIO! TESSERATI ORA (/◕ヮ◕)/" />
 
       {/* Values Section */}
-      <section className="relative px-4 grid items-center justify-center h-screen w-full bg-black border-t-2 border-b-2 border-black z-20">
+      <section className="relative px-4 grid items-center justify-center min-h-[60vh] py-24 w-full bg-black border-t-2 border-b-2 border-black z-20">
         <div className="text-cream font-bold font-gambarino tracking-tight text-5xl leading-[1] max-w-4xl text-center">
           Ink Club crede fermamente nei valori di antifascismo, antirazzismo, antisessismo, ed è schierato dalla parte della pace, dei diritti, dell'uguaglianza, della solidarietà, del libero accesso alla cultura, della giustizia sociale, dei valori democratici.
         </div>
@@ -74,7 +74,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="relative px-4 py-12 bg-black border-t-2 border-black z-20">
-        <div className="flex flex-col items-center gap-8">
+        <div className="flex flex-col items-center gap-4">
           <img
             src="/logo/Logo_cream.svg"
             alt="Ink Club Logo"
@@ -95,6 +95,30 @@ export default function Home() {
               <a href="#" className="text-cream font-apfel text-lg hover:underline">Youtube</a>
               <span className="text-cream">–</span>
               <a href="#" className="text-cream font-apfel text-lg hover:underline">Flickr</a>
+            </div>
+            <div className="flex gap-6 mt-4">
+              <a href="#" className="text-cream font-apfel text-lg hover:underline">Trasparenza</a>
+              <span className="text-cream">–</span>
+              <a href="#" className="text-cream font-apfel text-lg hover:underline">Statuto</a>
+            </div>
+          </div>
+          {/* Supporters Logos */}
+          <div className="grid grid-cols-2 gap-8 mt-8 pt-8 border-t border-cream/20 w-full max-w-6xl">
+            <div className="flex flex-col items-center gap-4">
+              <h3 className="text-cream font-apfel text-lg">Con il sostegno di</h3>
+              <img
+                src="/supporters/conilsostegnodi.png"
+                alt="Con il sostegno di"
+                className="h-auto w-3/4 max-w-md object-contain opacity-90"
+              />
+            </div>
+            <div className="flex flex-col items-center gap-4">
+              <h3 className="text-cream font-apfel text-lg">Collaborazioni</h3>
+              <img
+                src="/supporters/collaborazioni.png"
+                alt="Collaborazioni"
+                className="h-auto w-3/4 max-w-md object-contain opacity-90"
+              />
             </div>
           </div>
         </div>
