@@ -64,6 +64,41 @@ export default function Home() {
       </section>
 
       <Marquee text="DIVENTA SOCIO! TESSERATI ORA (/◕ヮ◕)/" />
+
+      {/* Values Section */}
+      <section className="relative px-4 grid items-center justify-center h-screen w-full bg-black border-t-2 border-b-2 border-black z-20">
+        <div className="text-cream font-bold font-gambarino tracking-tight text-5xl leading-[1] max-w-4xl text-center">
+          Ink Club crede fermamente nei valori di antifascismo, antirazzismo, antisessismo, ed è schierato dalla parte della pace, dei diritti, dell'uguaglianza, della solidarietà, del libero accesso alla cultura, della giustizia sociale, dei valori democratici.
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="relative px-4 py-12 bg-black border-t-2 border-black z-20">
+        <div className="flex flex-col items-center gap-8">
+          <img
+            src="/logo/Logo_cream.svg"
+            alt="Ink Club Logo"
+            className="h-auto w-auto max-w-xs"
+          />
+          <div className="flex flex-col items-center gap-4 text-cream">
+            <a href="mailto:info@inkclub.bergamo.it" className="text-cream font-apfel text-xl hover:underline">
+              info@inkclub.bergamo.it
+            </a>
+            <p className="text-cream font-apfel text-xl">
+              Via Carducci 4/b – Bergamo
+            </p>
+            <div className="flex gap-6 mt-2">
+              <a href="#" className="text-cream font-apfel text-lg hover:underline">Facebook</a>
+              <span className="text-cream">–</span>
+              <a href="#" className="text-cream font-apfel text-lg hover:underline">Instagram</a>
+              <span className="text-cream">–</span>
+              <a href="#" className="text-cream font-apfel text-lg hover:underline">Youtube</a>
+              <span className="text-cream">–</span>
+              <a href="#" className="text-cream font-apfel text-lg hover:underline">Flickr</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
