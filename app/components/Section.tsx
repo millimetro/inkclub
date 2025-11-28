@@ -41,13 +41,13 @@ export default function Section({
       id={id}
       className={`relative px-4 md:px-6 h-[calc(100vh-6vh)] md:h-[calc(100vh-8vh)] w-full ${bgColor} border-t-2 border-b-2 border-black`}
     >
-      <div className="max-w-[95vw] mx-auto py-20 border-[white] flex flex-col md:grid md:grid-cols-10 gap-8 md:gap-12 h-full items-center">
-        <div className={`w-full md:col-span-4 flex-[0.4] md:flex-none md:h-full flex items-center ${imageLeft ? "md:order-1" : "md:order-2"}`}>
-          <ImageBox src={imageSrc} alt={imageAlt} className="w-full h-full object-cover" borderColor={imageBorderClass} />
+      <div className="max-w-[85vw] mx-auto py-10 border-[white] flex flex-col md:flex-row gap-8 md:gap-12 h-full items-center">
+        <div className={`w-1/3 flex-[0.4] md:flex-none md:h-full flex items-center ${imageLeft ? "md:order-1" : "md:order-2"}`}>
+          <ImageBox src={imageSrc} alt={imageAlt} className="w-full h-auto object-cover" borderColor={imageBorderClass} />
         </div>
-        <div className={`w-full md:col-span-6 flex-[0.6] md:flex-none flex flex-col justify-center md:h-full ${imageLeft ? "md:order-2" : "md:order-1"}`}>
+        <div className={`w-2/3  flex-[0.6] md:flex-none flex flex-col justify-center md:h-full ${imageLeft ? "md:order-2" : "md:order-1"}`}>
           {typeof title === "string" ? (
-            <h2 className={`${textColor} font-bold font-brand text-[2.5rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[7rem] xl:text-[9rem] uppercase mb-4 md:mb-6 leading-none tracking-tighter`}>
+            <h2 className={`${textColor} font-bold font-brand text-[2.5rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[7rem] xl:text-[8rem] uppercase mb-4 md:mb-6 leading-none tracking-tighter`}>
               {title}
             </h2>
           ) : (
